@@ -32,6 +32,7 @@ function create(req, res, next) {
     mobileNumber: req.body.mobileNumber
   });
 
+
   user.save()
     .then(savedUser => res.json(savedUser))
     .catch(e => next(e));
@@ -71,6 +72,7 @@ function list(req, res, next) {
  * @returns {User}
  */
 function remove(req, res, next) {
+  console.log('XXXXXXXXXXXXXXX', req);
   const user = req.user;
   user.remove()
     .then(deletedUser => res.json(deletedUser))

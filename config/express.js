@@ -31,8 +31,21 @@ app.use(methodOverride());
 // secure apps by setting various HTTP headers
 app.use(helmet());
 
+// 處理跨域問題
+const corsOptions = {
+  origin: [
+    '*',
+    'http://localhost:8080',
+    'http://localhost:8081',
+    'http://localhost:8082',
+    'https://koala79922.github.io'
+  ],
+  credentials: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
 // enable CORS - Cross Origin Resource Sharing
-app.use(cors());
+app.use(cors(corsOptions));
 
 // enable detailed API logging in dev env
 if (config.env === 'development') {
